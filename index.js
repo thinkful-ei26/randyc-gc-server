@@ -8,6 +8,8 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
+ 
+
 const app = express();
 
 app.use(
@@ -21,6 +23,27 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
+
+app.get('/days',(req,res) => {
+
+  res.json({
+
+    days : [
+
+      'January 1',
+      'January 2',
+      'January 3',
+      'January 4',
+      'January 5'
+ 
+    ]
+
+
+
+  });
+
+
+});
 
 function runServer(port = PORT) {
   const server = app
