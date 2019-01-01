@@ -8,19 +8,23 @@ const { User } = require('../models/users');
 //GET ALL users
 Router.get('/', (req,res, next)=>{
 
-  User.find().then((data)=>res.json(data));
+  User.find().then((data)=>{
+    
+    res.json(data);
+  
+  });
 
 });
 
 //GET users by id
 Router.get('/id', (req,res, next)=>{
-
-
-
-  User.find().then((data)=>res.json(data));
+ 
+  User.findById(req.params.id).then((data)=>res.json(data));
 
 });
 
+
+//POST--CREATE
 Router.post('/',(req,res,next)=>{
 
   const { name } = req.body;
@@ -29,7 +33,7 @@ Router.post('/',(req,res,next)=>{
 
   //const { name } = req.body;
 
-  //User.create({name: name});
+  User.create({name: name});
 
 });
 
