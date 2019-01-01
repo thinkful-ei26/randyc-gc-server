@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const blockSchema = mongoose.Schema({
+const blockSchema = new mongoose.Schema({
   
   userId: {type: String},
   startDate: {type: String, required: true },

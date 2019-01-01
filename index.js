@@ -14,6 +14,10 @@ const userRouter = require('./routes/users');
 
 const app = express();
 
+app.use(express.json());
+
+//app.use(express.bodyParser());
+
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
     skip: (req, res) => process.env.NODE_ENV === 'test'
