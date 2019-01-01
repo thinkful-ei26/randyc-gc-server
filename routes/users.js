@@ -20,7 +20,7 @@ Router.get('/', (req,res, next)=>{
 
 
 //POST--CREATE user
-Router.post('/',(req,res)=>{
+Router.post('/',(req,res, next)=>{
 
   /***** Never trust users - validate input *****/
   let { name } = req.body; 
@@ -31,9 +31,17 @@ Router.post('/',(req,res)=>{
 
     name: name
 
-  };
+  }
 
-  return User.create(newUser);
+    .then(name => {
+      
+      const newUser = {
+        name
+      };
+
+      return User.create(newUser);
+    
+    });
 
 });
 
