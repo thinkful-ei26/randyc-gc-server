@@ -19,7 +19,7 @@ Router.get('/', (req,res, next)=>{
 //GET users by id
 Router.get('/id', (req,res, next)=>{
  
-  User.findById(req.params.id).then((data)=>res.json(data));
+  User.findById(req.params._id).then((data)=>res.json(data));
 
 });
 
