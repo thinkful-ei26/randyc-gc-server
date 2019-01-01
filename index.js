@@ -8,7 +8,7 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
-const Block = require('./models/blocks');
+const User = require('./models/users');
 
 const userRouter = require('./routes/users');
 
@@ -28,10 +28,10 @@ app.use(
 
 //ROUTERS
 
-app.use('/users', userRouter);
+//app.use('/users', userRouter);
 
 // //GET ALL Blocks
-// app.get('/',(req,res) => {
+app.get('/',(req,res) => {
 
 //   // res.json({
 
@@ -55,15 +55,15 @@ app.use('/users', userRouter);
 
 //   // });
 
-//   Block.find()
-//     .then(results => {
+  User.find()
+    .then(results => {
 
-//       res.json(results);
+      res.json(results);
 
-//     });
+    });
 
 
-// });
+});
 
 // //GET BY ID
 
