@@ -14,9 +14,11 @@ Router.get('/', (req,res, next)=>{
 
 Router.post('/',(req,res,next)=>{
 
-  const { name } = req.body;
+  console.log('test>>> ', req.body);
 
-  User.create({name: name});
+  //const { name } = req.body;
+
+  //User.create({name: name});
 
 });
 
