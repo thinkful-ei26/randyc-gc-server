@@ -28,42 +28,46 @@ app.use(
 
 //ROUTERS
 
-//app.use('/users', userRouter);
+//USERS
+app.use('/users', userRouter);
 
-// //GET ALL Blocks
-app.get('/',(req,res) => {
 
-//   // res.json({
 
-//   //   blocks : [
 
-//   //     {
-//   //       userId: 1,
-//   //       startDate: 'December 31, 2018 4:30 PM',
-//   //       endDate: 'December 31, 2018 5:30 PM'
-//   //     },
-//   //     {
-//   //       userId: 2,
-//   //       startDate: 'January 1, 2019 1:30 PM',
-//   //       endDate: 'January 1, 2018 2:30 PM'
+// // //GET ALL Blocks
+// app.get('/',(req,res) => {
+
+// //   // res.json({
+
+// //   //   blocks : [
+
+// //   //     {
+// //   //       userId: 1,
+// //   //       startDate: 'December 31, 2018 4:30 PM',
+// //   //       endDate: 'December 31, 2018 5:30 PM'
+// //   //     },
+// //   //     {
+// //   //       userId: 2,
+// //   //       startDate: 'January 1, 2019 1:30 PM',
+// //   //       endDate: 'January 1, 2018 2:30 PM'
  
-//   //     } 
+// //   //     } 
  
-//   //   ]
+// //   //   ]
 
 
 
-//   // });
+// //   // });
 
-  User.find()
-    .then(results => {
+//   User.find()
+//     .then(results => {
 
-      res.json(results);
+//       res.json(results);
 
-    });
+//     });
 
 
-});
+// });
 
 // //GET BY ID
 
