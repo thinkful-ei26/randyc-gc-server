@@ -9,8 +9,10 @@ const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
 const User = require('./models/users');
+const Block = require('./models/blocks');
 
-const userRouter = require('./routes/users');
+const userRouter = require('./routes/users-route');
+const blockRouter = require('./routes/blocks-route');
 
 const app = express();
 
@@ -35,7 +37,8 @@ app.use(
 //USERS
 app.use('/users', userRouter);
 
-
+// //BLOCKS
+app.use('/blocks', blockRouter);
 
 
 // // //GET ALL Blocks

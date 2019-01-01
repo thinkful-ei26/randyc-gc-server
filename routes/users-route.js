@@ -2,16 +2,12 @@
 
 const express = require('express');
 const Router = express.Router();
-//const store = require('./store');
 const { User } = require('../models/users');
-
-
+ 
 
 //GET ALL users -- for testing purposes
 Router.get('/get', (req,res, next)=>{
-
-   
-  
+ 
   User.find()
     .then((data)=>{
     
@@ -20,14 +16,11 @@ Router.get('/get', (req,res, next)=>{
     });
 
 });
- 
-//GET users by ID
+  
+//GET user by ID
 Router.get('/getUser/:id', (req,res, next)=>{
 
   console.log('finding by this id>>> ',req.params.id);
-
-
-  //const findById = req.params.id;
   
   User.findById(req.params.id)
     .then((data)=>{
@@ -37,8 +30,7 @@ Router.get('/getUser/:id', (req,res, next)=>{
     });
  
 }); 
-
-
+ 
 //POST--CREATE user -- Works!
 Router.post('/post',(req,res, next)=>{
 
@@ -52,11 +44,12 @@ Router.post('/post',(req,res, next)=>{
  
   };
  
-  User.create(data).then(data => {
+  User.create(data)
+    .then(data => {
 
-    res.json(data);
+      res.json(data);
 
-  });
+    });
     
      
 
@@ -80,8 +73,7 @@ Router.put('/put/:id',(req,res,next) =>{
 
 
 });
-
-
+ 
 //DELETE by ID works!
 Router.delete('/delete/:id',(req,res,next)=>{
 
@@ -99,6 +91,5 @@ Router.delete('/delete/:id',(req,res,next)=>{
     });
  
 });
-
 
 module.exports = Router;

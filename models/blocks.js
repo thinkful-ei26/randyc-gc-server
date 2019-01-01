@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 
 const blockSchema = new mongoose.Schema({
   
-  userId: {type: String},
+  userRef: {type: String, required: true},
   startDate: {type: String, required: true },
   endDate: {type: String, required: true }
 
 });
 
 
-const Block = mongoose.model("Block", blockSchema);
+const Block = mongoose.model('Block', blockSchema);
 
 module.exports = { Block };
 
