@@ -9,7 +9,8 @@ const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
 const Block = require('./models/blocks');
- 
+
+const userRouter = require('./routes/users');
 
 const app = express();
 
@@ -25,58 +26,61 @@ app.use(
   })
 );
 
+//ROUTERS
 
-//GET ALL Blocks
-app.get('/',(req,res) => {
+app.use('/users', userRouter);
 
-  // res.json({
+// //GET ALL Blocks
+// app.get('/',(req,res) => {
 
-  //   blocks : [
+//   // res.json({
 
-  //     {
-  //       userId: 1,
-  //       startDate: 'December 31, 2018 4:30 PM',
-  //       endDate: 'December 31, 2018 5:30 PM'
-  //     },
-  //     {
-  //       userId: 2,
-  //       startDate: 'January 1, 2019 1:30 PM',
-  //       endDate: 'January 1, 2018 2:30 PM'
+//   //   blocks : [
+
+//   //     {
+//   //       userId: 1,
+//   //       startDate: 'December 31, 2018 4:30 PM',
+//   //       endDate: 'December 31, 2018 5:30 PM'
+//   //     },
+//   //     {
+//   //       userId: 2,
+//   //       startDate: 'January 1, 2019 1:30 PM',
+//   //       endDate: 'January 1, 2018 2:30 PM'
  
-  //     } 
+//   //     } 
  
-  //   ]
+//   //   ]
 
 
 
-  // });
+//   // });
 
-  Block.find()
-    .then(results => {
+//   Block.find()
+//     .then(results => {
 
-      res.json(results);
+//       res.json(results);
 
-    });
-
-
-});
-
-//GET BY ID
+//     });
 
 
-//POST-CREATE
-app.post('/post/', (req,res) => {
+// });
 
-  console.log('new block >> ',req.body);
+// //GET BY ID
 
-  // const { userId, startDate, endDate } = req.body;
 
-  // const newBlock = { userId, startDate, endDate };
+// //POST-CREATE
+// app.post('/post/', (req,res) => {
 
-  // console.log('new block >> ',newBlock);
+//   console.log('new block >> ',req.body);
+
+//   // const { userId, startDate, endDate } = req.body;
+
+//   // const newBlock = { userId, startDate, endDate };
+
+//   // console.log('new block >> ',newBlock);
  
 
-});
+// });
 
 //PUT
 
