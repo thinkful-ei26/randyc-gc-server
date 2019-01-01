@@ -16,24 +16,24 @@ Router.get('/', (req,res, next)=>{
 
 });
 
-//GET users by id
-Router.get('/id', (req,res, next)=>{
- 
-  User.findById(req.params._id).then((data)=>res.json(data));
-
-});
 
 
-//POST--CREATE
+
+//POST--CREATE user
 Router.post('/',(req,res,next)=>{
 
-  const { name } = req.body;
+  /***** Never trust users - validate input *****/
+  let { name } = req.body; 
 
   console.log('test>>> ', name);
 
-  //const { name } = req.body;
+  const newUser = {
 
-  User.create({name: name});
+    name: name
+    
+  };
+
+  return User.create(newUser);
 
 });
 
