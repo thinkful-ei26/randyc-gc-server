@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const blockSchema = mongoose.Schema({
   
-  userId: {type: Number},
+  userId: {type: String},
   startDate: {type: String, required: true },
   endDate: {type: String, required: true }
 

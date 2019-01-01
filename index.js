@@ -26,18 +26,24 @@ app.use(
 );
 
 
-//GET ALL
-app.get('/blocks',(req,res) => {
+//GET ALL Blocks
+app.get('/',(req,res) => {
 
   res.json({
 
-    days : [
+    blocks : [
 
-      'January 1',
-      'January 2',
-      'January 3',
-      'January 4',
-      'January 5'
+      {
+        userId: 1,
+        startDate: 'December 31, 2018 4:30 PM',
+        endDate: 'December 31, 2018 5:30 PM'
+      },
+      {
+        userId: 2,
+        startDate: 'January 1, 2019 1:30 PM',
+        endDate: 'January 1, 2018 2:30 PM'
+ 
+      } 
  
     ]
 
@@ -52,13 +58,15 @@ app.get('/blocks',(req,res) => {
 
 
 //POST-CREATE
-app.post('/', (req,res) => {
+app.post('/post/', (req,res) => {
 
-  const { userId, startDate, endDate } = req.body;
+  console.log('new block >> ',req.body);
 
-  const newBlock = { userId, startDate, endDate };
+  // const { userId, startDate, endDate } = req.body;
 
-  console.log('new block >> ',newBlock);
+  // const newBlock = { userId, startDate, endDate };
+
+  // console.log('new block >> ',newBlock);
  
 
 });
