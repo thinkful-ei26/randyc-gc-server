@@ -8,6 +8,7 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
+const Block = require('./models/blocks');
  
 
 const app = express();
@@ -24,7 +25,9 @@ app.use(
   })
 );
 
-app.get('/days',(req,res) => {
+
+//GET ALL
+app.get('/blocks',(req,res) => {
 
   res.json({
 
@@ -44,6 +47,36 @@ app.get('/days',(req,res) => {
 
 
 });
+
+//GET BY ID
+
+
+//POST-CREATE
+app.post('/', (req,res) => {
+
+  const { userId, startDate, endDate } = req.body;
+
+  const newBlock = { userId, startDate, endDate };
+
+  console.log('new block >> ',newBlock);
+ 
+
+});
+
+//PUT
+
+
+//DELETE
+
+
+
+
+
+
+
+
+
+
 
 function runServer(port = PORT) {
   const server = app

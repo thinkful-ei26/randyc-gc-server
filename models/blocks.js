@@ -2,16 +2,18 @@
 
 const mongoose = require('mongoose');
 
-const daySchema = mongoose.Schema({
- 
-  month: {type: String, required: true } 
+const blockSchema = mongoose.Schema({
+  
+  userId: {type: Number},
+  startDate: {type: String, required: true },
+  endDate: {type: String, required: true }
 
 });
 
 
-const Day = mongoose.model("Day", daySchema);
+const Block = mongoose.model("Block", blockSchema);
 
-module.exports = { Day };
+module.exports = { Block };
 
 
 // year: {type: Number, required: true },
