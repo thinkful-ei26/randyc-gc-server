@@ -12,9 +12,20 @@ Router.get('/', (req,res, next)=>{
 
 });
 
+//GET users by id
+Router.get('/id', (req,res, next)=>{
+
+
+
+  User.find().then((data)=>res.json(data));
+
+});
+
 Router.post('/',(req,res,next)=>{
 
-  console.log('test>>> ', req.body);
+  const { name } = req.body;
+
+  console.log('test>>> ', name);
 
   //const { name } = req.body;
 
