@@ -34,6 +34,8 @@ Router.get('/getBlock/:id', (req,res,next)=>{
 //Post--Create a block
 Router.post('/post',(req,res,next)=>{
 
+  console.log('body>> ',req.body);
+
   const startDateInput = req.body.startDate;
   const endDateInput = req.body.endDate;
   const userRefInput = req.body.userRef;

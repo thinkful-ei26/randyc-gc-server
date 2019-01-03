@@ -2,7 +2,11 @@
 
 const express = require('express');
 const Router = express.Router();
+
+
+
 const { User } = require('../models/users');
+ 
  
 
 //GET ALL users -- for testing purposes
@@ -13,6 +17,11 @@ Router.get('/get', (req,res, next)=>{
     
       res.json(data);
   
+    })
+    .catch(err => {
+
+      next(err);
+
     });
 
 });
