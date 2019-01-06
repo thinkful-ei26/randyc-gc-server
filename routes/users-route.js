@@ -1,12 +1,13 @@
 'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const Router = express.Router();
-
-
-
-const { User } = require('../models/users');
  
+const { User } = require('../models/users');
+
+const jsonParser = bodyParser.json();
  
 
 //GET ALL users -- for testing purposes

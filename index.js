@@ -1,15 +1,19 @@
 'use strict';
-
+require('dotenv');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
+const passport = require('passport');
+
+
 
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
-const User = require('./models/users');
-const Block = require('./models/blocks');
+// const User = require('./models/users');
+// const Block = require('./models/blocks');
 
 const userRouter = require('./routes/users-route');
 const blockRouter = require('./routes/blocks-route');
@@ -17,6 +21,12 @@ const blockRouter = require('./routes/blocks-route');
 const app = express();
 
 app.use(express.json());
+
+//log stuff
+app.use(morgan('common'));
+
+//CORS stuff
+
 
 
 app.use(
@@ -31,15 +41,17 @@ app.use(
   })
 );
 
-//ROUTERS
+
+
+//ROUTERS *********************
 
 //USERS
 app.use('/users', userRouter);
 
-// //BLOCKS
+//BLOCKS
 app.use('/blocks', blockRouter);
 
-
+//SPECIAL SAUCE
 function runServer(port = PORT) {
   const server = app
     .listen(port, () => {
