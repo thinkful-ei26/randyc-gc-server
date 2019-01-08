@@ -36,6 +36,7 @@ Router.post('/post',(req,res,next)=>{
 
   console.log('body>> ',req.body);
 
+  
   const startDateInput = req.body.startDate;
   const endDateInput = req.body.endDate;
   const userRefInput = req.body.userRef;
@@ -63,6 +64,7 @@ Router.put('/put/:id',(req,res,next)=>{
 
   const blockId = req.params.id;
   //const userRef = req.body.userRef;
+
   const updateStartDate = req.body.startDate;
   const updateEndDate = req.body.endDate;
 
