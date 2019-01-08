@@ -15,8 +15,4 @@ const Block = mongoose.model('Block', blockSchema);
 
 module.exports = { Block };
 
-
-// year: {type: Number, required: true },
-//   month: {type: String, required: true },
-//   day: {type: Number, required: true },
-//   dayName: {type: String, required: true },
+//Need to add a title to the block schema
