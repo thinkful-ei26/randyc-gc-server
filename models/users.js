@@ -4,34 +4,37 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-const userSchema = new mongoose.Schema({
-   
-  userName: { type: String, required: true, unique: true },
-  password: { type: String, required: true},
-  firstName: { type: String, default: ''},
-  lastName: { type: String, default: ''}
-  
+const UserSchema = mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  firstName: {type: String, default: ''},
+  lastName: {type: String, default: ''}
 });
 
-userSchema.methods.serialize = function() {
-
+UserSchema.methods.serialize = function() {
   return {
-
-    userName: this.userName || '',
+    username: this.username || '',
     firstName: this.firstName || '',
-    lastName: this.lastName || ''
- 
+    lastName: this.lastName || '',
+    id: this._id
   };
-
 };
 
- 
-const User = mongoose.model('User', userSchema);
+UserSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+};
 
-module.exports = { User };
+UserSchema.statics.hashPassword = function(password) {
+  return bcrypt.hash(password, 10);
+};
 
-//later
-// username: {type: String, required: true },
-// password: {type: String, required: true }
+const User = mongoose.model('User', UserSchema);
 
-//MULTI_USER!
+module.exports = {User};
