@@ -40,30 +40,26 @@ Router.get('/getUser/:id', (req,res, next)=>{
     });
  
 }); 
+
+
+
  
 //POST--CREATE user -- Works!
 Router.post('/post',(req,res, next)=>{
-
-  console.log('new name to create >>> ',req.body.name);
-
-  const newName = req.body.name;
-
-  const data = {
-
-    name: newName
  
-  };
- 
-  User.create(data)
+  User.create(req.body)
     .then(data => {
 
       res.json(data);
 
     });
     
-     
-
 });
+
+
+
+
+//For ref & testing...
 
 //PUT--edit by ID
 Router.put('/put/:id',(req,res,next) =>{
