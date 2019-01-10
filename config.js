@@ -8,6 +8,7 @@
 
 // };
 
+exports.CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'https://mighty-basin-66377.herokuapp.com/';
 exports.DATABASE_URL = process.env.DATABASE_URL || 'mongodb://robot9999:zebra999@ds145694.mlab.com:45694/goodcalldb';
 exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL || 'mongodb://localhost/jwt-auth-demo';
 exports.PORT = process.env.PORT || 8080;
