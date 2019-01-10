@@ -1,15 +1,17 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const passport = require ('passport');
 const {User} = require('../models/users');
+const {Block} = require('../models/blocks');
 
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
-// Post to register a new user
+// Auth Post to register a new user
 router.post('/', jsonParser, (req, res) => {
+ 
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -139,9 +141,120 @@ router.post('/', jsonParser, (req, res) => {
 // if we're creating users. keep in mind, you can also
 // verify this in the Mongo shell.
 router.get('/', (req, res) => {
+
+  console.log('hello?: ');
+
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
+
+
+//GET user by ID
+router.get('/getUser/:id', (req,res, next)=>{
+
+  console.log('finding by this id>>> ',req.params.id);
+  
+  User.findById(req.params.id)
+    .then((data)=>{
+
+      return res.json(data);
+ 
+    });
+ 
+}); 
+
+ 
+
+//AUTH get all blocks with the uerRef of an authorized User
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+router.get('/blocks/',jwtAuth,(req,res) => {
+ 
+  console.log('looking for this user id: ',req.user.id);
+
+  //let testId = "5c3655bdead1409174e85298";
+
+  Block.find({userRef: req.user.id})
+    .then((data)=>{return res.json(data);});
+
+});
+
+//AUTH post blocks
+//Post--Create a block
+router.post('/blocks/post',jwtAuth,(req,res,next)=>{
+
+  console.log('body>> ',req.body);
+
+  
+  const startDateInput = req.body.startDate;
+  const endDateInput = req.body.endDate;
+  const userRefInput = req.body.userRef;
+
+  const newBlock = {
+
+    userRef: userRefInput,
+    startDate: startDateInput,
+    endDate: endDateInput
+
+
+  };
+
+  Block.create(newBlock)
+    .then((data)=>{
+
+      res.json(data);
+ 
+    });
+
+});
+
+//PUT--edit by ID by its ID and user ID
+router.put('/blocks/put/:id',jwtAuth,(req,res,next)=>{
+
+  const blockId = req.params.id;
+  //const userRef = req.body.userRef;
+
+  const updateStartDate = req.body.startDate;
+  const updateEndDate = req.body.endDate;
+
+  const blockUpdate = {
+ 
+    startDate: updateStartDate,
+    endDate: updateEndDate
+
+  };
+
+  Block.findOneAndUpdate({_id: blockId}, blockUpdate, {new: true})
+    .then((data)=>{
+
+      res.json(data);
+
+    });
+ 
+
+}); 
+
+
+//DELETE
+router.delete('/delete/:id',jwtAuth,(req,res,next)=>{
+
+  const findById = req.params.id;
+
+  Block.findByIdAndRemove({_id : findById})
+    .then((data)=>{
+
+      res.sendStatus(204);
+      console.log('gone!');
+      return res.json(data);
+
+
+    });
+
+
+
+});
+
+ 
 
 module.exports = {router};
