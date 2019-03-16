@@ -90,7 +90,9 @@ Router.delete('/delete/:id',(req,res,next)=>{
 
   const findById = req.params.id;
 
-  Block.findByIdAndRemove({_id : findById})
+  console.log('id at back end!: ',findById);
+
+  Block.findByIdAndRemove({_id: findById})
     .then((data)=>{
 
       res.sendStatus(204);
