@@ -237,7 +237,7 @@ router.put('/blocks/put/:id',jwtAuth,(req,res,next)=>{
 
 
 //DELETE
-router.delete('/delete/:id',jwtAuth,(req,res,next)=>{
+router.delete('/blocks/delete/:id',jwtAuth,(req,res,next)=>{
 
   const findById = req.params.id;
 
